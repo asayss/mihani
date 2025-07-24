@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل الأطباء - المغرب</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #1976d2, #2196f3);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+        }
+
+        .header-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: right;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .header-text {
+            text-align: center;
+            flex: 1;
+        }
+
+        .header-text h1 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header-text p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+
+        .home-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1f5fe;
+            border-radius: 25px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #2196f3;
+            box-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .doctor-info {
+            padding: 20px;
+        }
+
+        .doctor-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #0d47a1;
+            margin-bottom: 8px;
+        }
+
+        .doctor-specialty {
+            color: #1976d2;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .doctor-address {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-directions {
+            background: linear-gradient(135deg, #2196f3, #1976d2);
+            color: white;
+        }
+
+        .btn-directions:hover {
+            background: linear-gradient(135deg, #1976d2, #0d47a1);
+            transform: translateY(-2px);
+        }
+
+        .btn-phone {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white;
+        }
+
+        .btn-phone:hover {
+            background: linear-gradient(135deg, #388e3c, #2e7d32);
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            font-size: 16px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 16px;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 5px;
+            }
+
+            .header {
+                padding: 15px;
+            }
+
+            .header-icon {
+                width: 80px;
+                height: 80px;
+                right: 15px;
+            }
+
+            .header-icon:hover {
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            .header-text h1 {
+                font-size: 20px;
+            }
+
+            .header-text p {
+                font-size: 12px;
+            }
+
+            .home-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+                left: 15px;
+            }
+            
+            .doctor-name {
+                font-size: 18px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                margin-bottom: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="https://asayss.github.io/atibi-doct/" title="الرئيسية">
+                <img src="data/icon.png" alt="أيقونة دليل الأطباء" class="header-icon">
+            </a>
+            <div class="header-text">
+                <h1>دليل الأطباء</h1>
+                <p>أكادير</p>
+            </div>
+            <a href="https://asayss.github.io/atibi-doct/" class="home-btn" title="الرئيسية">
+                🏠
+            </a>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="ابحث عن طبيب أو تخصص..." id="searchInput">
+        </div>
+
+        <div id="doctorsList">
+            <!-- Doctor Cards will be inserted here -->
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            لا توجد نتائج مطابقة للبحث
+        </div>
+    </div>
+
+    <script>
+        const doctors = [
+            {
+                name: "الدكتور",
+                specialty: "التخصص",
+                address: "العنوان، المغرب",
+                phone: "+21250000000",
+                coordinates: "العنوان، المغرب"
+            },
+            {
+                 name: "الدكتور",
+                specialty: "التخصص",
+                address: "العنوان، المغرب",
+                phone: "+21250000000",
+                coordinates: "العنوان، المغرب"
+            },
+            {
+                 name: "الدكتور",
+                specialty: "التخصص",
+                address: "العنوان، المغرب",
+                phone: "+21250000000",
+                coordinates: "العنوان، المغرب"
+            
+            }
+            
+        ];
+
+        function createDoctorCard(doctor) {
+            return `
+                <div class="doctor-card">
+                    <div class="doctor-info">
+                        <div class="doctor-name">${doctor.name}</div>
+                        <div class="doctor-specialty">${doctor.specialty}</div>
+                        <div class="doctor-address">📍 ${doctor.address}</div>
+                        <div class="action-buttons">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=${doctor.coordinates}" 
+                               target="_blank" class="btn btn-directions">
+                                <span class="icon">🗺️</span>
+                                الاتجاهات
+                            </a>
+                            <a href="tel:${doctor.phone}" class="btn btn-phone">
+                                <span class="icon">📞</span>
+                                اتصال
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayDoctors(doctorsToShow) {
+            const doctorsList = document.getElementById('doctorsList');
+            const noResults = document.getElementById('noResults');
+            
+            if (doctorsToShow.length === 0) {
+                doctorsList.innerHTML = '';
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+                doctorsList.innerHTML = doctorsToShow.map(doctor => createDoctorCard(doctor)).join('');
+            }
+        }
+
+        function filterDoctors(searchTerm) {
+            const filtered = doctors.filter(doctor => 
+                doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                doctor.address.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            displayDoctors(filtered);
+        }
+
+        // Initialize the page
+        displayDoctors(doctors);
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            filterDoctors(e.target.value);
+        });
+
+        // Add some animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.doctor-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
