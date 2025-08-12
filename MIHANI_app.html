@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بريكول - منصة المهنيين والحرفيين</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .header-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 28px;
+       }
+
+        .header-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .header-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .header-text {
+            text-align: center;
+            flex: 1;
+        }
+
+        .header-text h1 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header-text p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+
+        .header-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .home-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .register-btn-top {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+        }
+
+        .register-btn-top:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-section {
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #c8e6c9;
+            border-radius: 25px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4caf50;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+        }
+
+        .search-btn {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(135deg, #388e3c, #1b5e20);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+
+        .city-filter {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .city-btn {
+            padding: 6px 12px;
+            background: white;
+            border: 2px solid #c8e6c9;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .city-btn:hover, .city-btn.active {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            border-color: #4caf50;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .city-btn.hidden {
+            display: none;
+        }
+
+        .more-cities-btn {
+            padding: 6px 12px;
+            background: white;
+            border: 2px solid #c8e6c9;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #2e7d32;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+
+        .more-cities-btn:hover {
+            background: #f5f5f5;
+            border-color: #4caf50;
+            transform: translateY(-2px);
+        }
+
+        .professional-card {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .professional-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .professional-info {
+            padding: 20px;
+        }
+
+        .professional-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1b5e20;
+            margin-bottom: 8px;
+        }
+
+        .professional-specialty {
+            color: #2e7d32;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .professional-address {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 8px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            min-height: 40px;
+        }
+
+        .btn-directions {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+        }
+
+        .btn-directions:hover {
+            background: linear-gradient(135deg, #388e3c, #1b5e20);
+            transform: translateY(-2px);
+        }
+
+        .btn-phone {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+        }
+
+        .btn-phone:hover {
+            background: linear-gradient(135deg, #f57c00, #e65100);
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: linear-gradient(135deg, #128c7e, #075e54);
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            font-size: 14px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .register-btn-bottom {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .register-btn-bottom:hover {
+            background: linear-gradient(135deg, #388e3c, #1b5e20);
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.6);
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 5px;
+            }
+
+            .header {
+                padding: 15px;
+            }
+
+            .header-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+
+            .header-text h1 {
+                font-size: 20px;
+            }
+
+            .header-text p {
+                font-size: 12px;
+            }
+
+            .home-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .register-btn-top {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+            
+            .professional-name {
+                font-size: 18px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .btn {
+                margin-bottom: 0;
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .city-filter {
+                gap: 5px;
+            }
+
+            .city-btn, .more-cities-btn {
+                font-size: 11px;
+                padding: 5px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+           <div class="header-icon" onclick="goBack()">
+                <img src="data/icon.png" alt="أيقونة مهني">
+            </div>
+            <div class="header-text">
+                <h1>مهني - MIHANI</h1>
+                <p>منصة المهنيين والحرفيين - المغرب</p>
+            </div>
+            <div class="header-controls">
+                <div class="home-btn" onclick="goBack()">
+                    🏠
+                </div>
+                <a href="#" class="register-btn-top" onclick="openRegistrationForm()">
+                    طلب التسجيل 
+                </a>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="ابحث عن مهني أو حرفة..." id="searchInput">
+                <button class="search-btn" onclick="performSearch()">
+                    🔍
+                </button>
+            </div>
+            
+            <div class="city-filter">
+                <button class="city-btn active" data-city="الكل">الكل</button>
+                <button class="city-btn" data-city="الدار البيضاء">الدار البيضاء</button>
+                <button class="city-btn" data-city="أكادير">أكادير</button>
+                <button class="city-btn" data-city="الرباط">الرباط</button>
+                <button class="city-btn hidden" data-city="فاس">فاس</button>
+                <button class="city-btn hidden" data-city="مراكش">مراكش</button>
+                <button class="city-btn hidden" data-city="طنجة">طنجة</button>
+                <button class="city-btn hidden" data-city="مكناس">مكناس</button>
+                <button class="city-btn hidden" data-city="آسفي">آسفي</button>
+                <button class="city-btn hidden" data-city="وجدة">وجدة</button>
+                <button class="more-cities-btn" onclick="toggleMoreCities()">...</button>
+            </div>
+        </div>
+
+        <div id="professionalsList">
+            <!-- Professional Cards will be inserted here -->
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            لا توجد نتائج مطابقة للبحث
+        </div>
+    </div>
+
+    <a href="#" class="register-btn-bottom" onclick="openRegistrationForm()">
+        📝 طلب التسجيل  
+    </a>
+
+    <script>
+        const professionals = [
+            {
+              name: "علي ",
+                specialty: " عامل الكهرباء",
+                address: "النهضة - وجدة ",
+                phone: "+212698292800 ",
+                whatsapp: "+212698292800  ",
+                coordinates: "النهضة - وجدة ",
+                city: "وجدة"
+            },
+            {
+
+               name: "إدريس ",
+                specialty: "اعمال الجبس والديكور الداخلي ",
+                address: "حي النصر - وجدة ",
+                phone: "+212660598317 ",
+                whatsapp: "+212660598317  ",
+                coordinates: "حي النصر - وجدة ",
+                city: "وجدة"
+            },
+            {
+
+               name: "حمزة ",
+                specialty: "نجار ",
+                address: "حي آخر - وجدة ",
+                phone: "+212632135836 ",
+                whatsapp: "+212632135836  ",
+                coordinates: "حي آخر - وجدة ",
+                city: "وجدة"
+            },
+            {
+
+               name: "مراد ",
+                specialty: "تسقيف ",
+                address: "حي لازارت - وجدة ",
+                phone: "+212771614565 ",
+                whatsapp: "+212771614565  ",
+                coordinates: "حي لازارت - وجدة ",
+                city: "وجدة"
+            },
+            {
+                name: "عبد الكريم",
+                specialty: "اعمال الجبس والديكور الداخلي",
+                address: "آسفي",
+                phone: "+212668420666 ",
+                whatsapp: "+212668420666  ",
+                coordinates: "آسفي",
+                city: "آسفي"
+            },
+            {
+                name: "يوسف",
+                specialty: "إصلاح أنابيب المياه",
+                address: "وصلان - مكناس",
+                phone: "+212644559698 ",
+                whatsapp: "+212644559698  ",
+                coordinates: "وصلان - مكناس",
+                city: "مكناس"
+            },
+            {
+
+                name: "سمير",
+                specialty: "بناء",
+                address: "برج مولاي عمر - مكناس",
+                phone: "+212634033202  ",
+                whatsapp: "+212634033202  ",
+                coordinates: "برج مولاي عمر - مكناس",
+                city: "مكناس"
+            },
+            {
+
+                name: "عمر",
+                specialty: "صباغ",
+                address: "2 مرجان - مكناس",
+                phone: "+212691697827 ",
+                whatsapp: "+212691697827  ",
+                coordinates: "2 مرجان - مكناس",
+                city: "مكناس"
+            },
+            {
+
+                 name: "محمد",
+                specialty: "تركيب الزليج",
+                address: "زيتون - مكناس",
+                phone: "+212624829937 ",
+                whatsapp: "+212624829937  ",
+                coordinates: "زيتون - مكناس",
+                city: "مكناس"
+            },
+            {
+
+               name: "الوزاني",
+                specialty: "تركيب الزليج ",
+                address: " فاس المدينة - فاس",
+                phone: "+212645169965 ",
+                whatsapp: "+212645169965  ",
+                coordinates: "فاس المدينة - فاس ",
+                city: "فاس"
+            },
+            {
+                name: "محمد ",
+                specialty: " تركيب الزليج",
+                address: "ابن سودة - فاس ",
+                phone: "+212660175240 ",
+                whatsapp: "+212660175240  ",
+                coordinates: "ابن سودة - فاس ",
+                city: "فاس"
+            },
+            { 
+               name: "الخمار ",
+                specialty: "صباغ ",
+                address: "زواغة - فاس ",
+                phone: "+212673279101 ",
+                whatsapp: "+212673279101  ",
+                coordinates: "زواغة - فاس ",
+                city: "فاس"
+            },
+            {
+
+               name: "صابر ",
+                specialty: "صباغ ",
+                address: "زواغة - فاس ",
+                phone: "+212673279101 ",
+                whatsapp: "+212673279101  ",
+                coordinates: "زواغة - فاس ",
+                city: "فاس"
+            },
+            {
+                name: "محمد ",
+                specialty: " عامل الكهرباء",
+                address: "فاس ",
+                phone: "+212778940057 ",
+                whatsapp: "+212778940057  ",
+                coordinates: "فاس ",
+                city: "فاس"
+            },
+            { 
+               name: " طارق",
+                specialty: " إصلاح التلفزيون والالكترونيات",
+                address: "  زواغة - فاس",
+                phone: "+212656401312 ",
+                whatsapp: "+212656401312  ",
+                coordinates: "  زواغة - فاس",
+                city: "فاس"
+            },
+            {
+
+               name: "محمد ",
+                specialty: "عامل الكهرباء ",
+                address: "  مونت فلوري - فاس",
+                phone: "+212778940057 ",
+                whatsapp: "+212778940057  ",
+                coordinates: " مونت فلوري - فاس ",
+                city: "فاس"
+            },
+            {
+                name: "مصطفى ",
+                specialty: " نجار",
+                address: " ابن سودة - فاس ",
+                phone: "+212634771528 ",
+                whatsapp: "+212634771528  ",
+                coordinates: " ابن سودة - فاس ",
+                city: "فاس"
+            },
+            { 
+               name: "البدير ",
+                specialty: "نجار ",
+                address: " ابن سودة - فاس ",
+                phone: "+212634771528 ",
+                whatsapp: "+212634771528  ",
+                coordinates: " ابن سودة - فاس ",
+                city: "فاس"
+            },
+            {
+
+               name: "رشيد ",
+                specialty: " صباغ",
+                address: "عين قادوس - فاس ",
+                phone: "+212603881963 ",
+                whatsapp: "+212603881963  ",
+                coordinates: "عين قادوس - فاس ",
+                city: "فاس"
+            },
+            {
+                name: " كمال",
+                specialty: "اعمال الجبس والديكور الداخلي ",
+                address: " طريق إموزار - فاس",
+                phone: "+212660721536 ",
+                whatsapp: "+212660721536  ",
+                coordinates: "طريق إموزار - فاس ",
+                city: "فاس"
+            },
+            { 
+               name: " أشرف",
+                specialty: "اعمال الجبس والديكور الداخلي ",
+                address: "دار مهراز - فاس ",
+                phone: "+212657893860 ",
+                whatsapp: "+212657893860  ",
+                coordinates: " دار مهراز - فاس",
+                city: "فاس"
+            },
+            {
+
+               name: "الغالي ",
+                specialty: "اعمال البناء ",
+                address: " أولاد طيب - فاس",
+                phone: "+212623028609 ",
+                whatsapp: "+212623028609  ",
+                coordinates: "أولاد طيب - فاس ",
+                city: "فاس"
+            },
+            {
+                name: "خالد ",
+                specialty: "عامل الكهرباء ",
+                address: " فاس المدينة - فاس",
+                phone: "+212678852488 ",
+                whatsapp: "+212678852488  ",
+                coordinates: "فاس المدينة - فاس ",
+                city: "فاس"
+            },
+            { 
+               name: "زهير ",
+                specialty: " صباغ",
+                address: "  فاس المدينة - فاس",
+                phone: "+212663078257 ",
+                whatsapp: "+212663078257  ",
+                coordinates: " فاس المدينة - فاس ",
+                city: "فاس"
+            },
+            {
+
+                name: "ياسين ",
+                specialty: "إصلاح التلفزيون والالكترونيات ",
+                address: "  سايس - فاس",
+                phone: "+212700440812 ",
+                whatsapp: "+212700440812  ",
+                coordinates: " سايس - فاس ",
+                city: "فاس"
+            },
+            { 
+               name: " الحبيب",
+                specialty: "حداد ",
+                address: "فاس ",
+                phone: "+212664308133 ",
+                whatsapp: "+212664308133  ",
+                coordinates: "فاس ",
+                city: "فاس"
+            },
+            {
+                name: " يونس",
+                specialty: "تركيب الزليج ",
+                address: "طريق إموزار - فاس ",
+                phone: "+212674779109 ",
+                whatsapp: "+212674779109  ",
+                coordinates: " طريق إموزار - فاس",
+                city: "فاس"
+            },
+            { 
+               name: "أحمد ",
+                specialty: "نقل السلع ",
+                address: " فاس المدينة - فاس ",
+                phone: "+212063643515 ",
+                whatsapp: "+212063643515  ",
+                coordinates: " فاس المدينة - فاس ",
+                city: "فاس"
+            },
+            {
+
+               name: "الصبار ",
+                specialty: "عامل الكهرباء ",
+                address: "مرجان - طنجة ",
+                phone: "+212663475504 ",
+                whatsapp: "+212663475504  ",
+                coordinates: "مرجان - طنجة ",
+                city: "طنجة"
+            },
+            { 
+               name: "محمد ",
+                specialty: " ",
+                address: " ",
+                phone: "+212 ",
+                whatsapp: "+212  ",
+                coordinates: " ",
+                city: "طنجة"
+            },
+            {
+                name: "محمد ",
+                specialty: "صباغ ",
+                address: "Centre ville - طنجة ",
+                phone: "+212607046511 ",
+                whatsapp: "+212607046511  ",
+                coordinates: " ",
+                city: "طنجة"
+            },
+            { 
+               name: "محمد ",
+                specialty: "تسقيف ",
+                address: " مسنانة - طنجة",
+                phone: "+212662493261 ",
+                whatsapp: "+212662493261  ",
+                coordinates: " مسنانة - طنجة",
+                city: "طنجة"
+            },
+            {
+
+                name: "محسن ",
+                specialty: "إصلاح أنابيب المياه ",
+                address: " Centre ville- طنجة ",
+                phone: "+212669024215 ",
+                whatsapp: "+212669024215  ",
+                coordinates: "Centre ville - طنجة ",
+                city: "طنجة"
+            },
+            { 
+               name: "يوسف ",
+                specialty: "إصلاح الأجهزة المنزلية ",
+                address: " حي أهلا - طنجة",
+                phone: "+212606230464 ",
+                whatsapp: "+212606230464  ",
+                coordinates: " حي أهلا - طنجة",
+                city: "طنجة"
+            },
+            {
+                name: " عبد الواحد",
+                specialty: "اعمال الألمنيوم ",
+                address: " حي المرابط - طنجة ",
+                phone: "+212669158289 ",
+                whatsapp: "+212669158289  ",
+                coordinates: "  حي المرابط - طنجة",
+                city: "طنجة"
+            },
+            { 
+               name: " إلكترو الصبراوي",
+                specialty: " عامل الكهرباء",
+                address: " حي المرابط - طنجة",
+                phone: "+212600998825 ",
+                whatsapp: "+212600998825  ",
+                coordinates: "حي المرابط - طنجة ",
+                city: "طنجة"
+            },
+            {
+
+                name: "محمد ",
+                specialty: "صباغ ",
+                address: "مسنانة - طنجة ",
+                phone: "+212635269233 ",
+                whatsapp: "+212635269233  ",
+                coordinates: "مسنانة - طنجة ",
+                city: "طنجة"
+            },
+            { 
+               name: "عبد الفتاح ",
+                specialty: "تركيب الزليج ",
+                address: "مسنانة - طنجة ",
+                phone: "+212720939724 ",
+                whatsapp: "+212720939724  ",
+                coordinates: "مسنانة - طنجة ",
+                city: "طنجة"
+            },
+            {
+                name: "أحمد ",
+                specialty: "عامل الكهرباء ",
+                address: " طنجة",
+                phone: "+212690233720 ",
+                whatsapp: "+212690233720  ",
+                coordinates: "طنجة ",
+                city: "طنجة"
+            },
+            { 
+               name: "مهدي ",
+                specialty: "عامل الكهرباء ",
+                address: " طنجة",
+                phone: "+212682036850 ",
+                whatsapp: "+212682036850  ",
+                coordinates: "طنجة ",
+                city: "طنجة"
+            },
+            {
+
+                name: "يوسف إلكترو ",
+                specialty: "إصلاح الأجهزة المنزلية ",
+                address: "حي أهلا - طنجة ",
+                phone: "+212770179734 ",
+                whatsapp: "+212770179734  ",
+                coordinates: "حي أهلا - طنجة ",
+                city: "طنجة"
+            },
+            { 
+               name: "ياسين ",
+                specialty: "إصلاح الأجهزة المنزلية ",
+                address: " حي أهلا - طنجة ",
+                phone: "+212668751440 ",
+                whatsapp: "+212668751440  ",
+                coordinates: "  حي أهلا - طنجة",
+                city: "طنجة"
+            },
+            {
+                name: "محمد ",
+                specialty: " صباغ",
+                address: "المنظر الجميل - طنجة ",
+                phone: "+212633016479 ",
+                whatsapp: "+212633016479  ",
+                coordinates: "المنظر الجميل - طنجة ",
+                city: "طنجة"
+            },
+            { 
+               name: "عبد العظيم ",
+                specialty: " عامل الكهرباء",
+                address: " السواني - طنجة",
+                phone: "+212688000140 ",
+                whatsapp: "+212688000140  ",
+                coordinates: " ",
+                city: "طنجة"
+            },
+            {
+
+                name: " حمزة",
+                specialty: " إصلاح الأجهزة المنزلية",
+                address: " بن ديبان - طنجة",
+                phone: "+212700971106 ",
+                whatsapp: "+212700971106  ",
+                coordinates: "بن ديبان - طنجة ",
+                city: "طنجة"
+            },
+            { 
+               name: " عادل",
+                specialty: " إصلاح مكيف الهواء",
+                address: "  البرانص 2 - طنجة",
+                phone: "+212633334279 ",
+                whatsapp: "+212633334279  ",
+                coordinates: "  البرانص 2 - طنجة",
+                city: "طنجة"
+            },
+            {
+                name: "عبد العزيز",
+                specialty: "صيانة عامة",
+                address: "أفاق - مراكش",
+                phone: "+212704133107 ",
+                whatsapp: "+212704133107  ",
+                coordinates: "أفاق - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "محمد",
+                specialty: "نجار",
+                address: " عزوزية - مراكش",
+                phone: "+212600498926",
+                whatsapp: "+212600498926",
+                coordinates: " عزوزية - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "عبد الرحيم",
+                specialty: "أعمال الألمنيوم",
+                address: "ازلي - مراكش",
+                phone: "+212660003810",
+                whatsapp: "+212660003810",
+                coordinates: "ازلي - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "أمين",
+                specialty: "إصلاح الأجهزة المنزلية",
+                address: "عزوزية - مراكش",
+                phone: "+212628846355 ",
+                whatsapp: "+212628846355  ",
+                coordinates: "عزوزية - مراكش",
+                city: "مراكش"
+
+            },
+            {
+
+                name: "رشيد",
+                specialty: "إصلاح الأجهزة المنزلية ",
+                address: " طريق اكادير-الصويرة - مراكش",
+                phone: "+212689133061",
+                whatsapp: "+212689133061",
+                coordinates: "طريق اكادير-الصويرة - مراكش ",
+                city: "مراكش"
+            },
+            {
+
+                name: "حمزة",
+                specialty: "إصلاح مكيف الهواء",
+                address: "أسيف ، مراكش",
+                phone: "+212679730853 ",
+                whatsapp: "+212679730853  ",
+                coordinates: " أسيف ، مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "عبد الصمد",
+                specialty: "عامل الكهرباء",
+                address: "المحاميد - مراكش",
+                phone: "+212672845469",
+                whatsapp: "+212672845469",
+                coordinates: "المحاميد - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "محمد",
+                specialty: "عامل الكهرباء",
+                address: "المحاميد - مراكش",
+                phone: "+212632862161 ",
+                whatsapp: "+212632862161  ",
+                coordinates: "المحاميد - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: " محمد",
+                specialty: "مهندس معماري",
+                address: " المسيرة - مراكش",
+                phone: "+212063500431 ",
+                whatsapp: "+212063500431  ",
+                coordinates: " المسيرة - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "زكرياء",
+                specialty: "صيانة عامة",
+                address: "كليز - مراكش",
+                phone: "+212645868069 ",
+                whatsapp: "+212645868069 ",
+                coordinates: "كليز - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "عبد الكبير",
+                specialty: "إصلاح مكيف الهواء",
+                address: " وسط المدينة - مراكش",
+                phone: "+212664695833 ",
+                whatsapp: "+212664695833  ",
+                coordinates: " وسط المدينة - مراكش",
+                city: "مراكش"
+            },
+            {
+
+
+                name: "خالد",
+                specialty: "كهربائي",
+                address: "طريق اكادير-الصويرة - مراكش",
+                phone: "+212611143046 ",
+                whatsapp: "+212611143046  ",
+                coordinates: "طريق اكادير-الصويرة - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "ابراهيم",
+                specialty: "صباغ",
+                address: "كليز - مراكش",
+                phone: "+212762905765 ",
+                whatsapp: "+212762905765  ",
+                coordinates: "كليز - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "عبد الله",
+                specialty: "إصلاح أنابيب المياه",
+                address: "أفاق - مراكش",
+                phone: "+212627920593 ",
+                whatsapp: "+212627920593  ",
+                coordinates: "أفاق - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "عبد اللطيف",
+                specialty: "كهربائي",
+                address: "مراكش",
+                phone: "+212687448751 ",
+                whatsapp: "+212687448751  ",
+                coordinates: "مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "محمد",
+                specialty: " أعمال الألمنيوم",
+                address: "المسيرة - مراكش",
+                phone: "+212777733962 ",
+                whatsapp: "+212777733962  ",
+                coordinates: "المسيرة - مراكش",
+                city: "مراكش"
+            },
+            {
+
+                name: "محمد",
+                specialty: "كهربائي",
+                address: "مراكش",
+                phone: "+212710488974 ",
+                whatsapp: "+212710488974  ",
+                coordinates: "مراكش",
+                city: "مراكش"
+            },
+            {
+                name: "عبد الحكيم",
+                specialty: "اعمال الجبس والديكور الداخلي",
+                address: " حي النهضة - الرباط",
+                phone: "+212627035694",
+                whatsapp: "+212627035694",
+                coordinates: " حي النهضة - الرباط",
+                city: "الرباط"
+            },
+            {
+                name: "حسام",
+                specialty: "اعمال الالمنيوم",
+                address: "يعقوب المنصور - الرباط",
+                phone: "+212615143028",
+                whatsapp: "+212615143028",
+                coordinates: "يعقوب المنصور - الرباط",
+                city: "الرباط"
+            },
+            {                name: " ",
+                specialty: "محمد",
+                address: "الرباط",
+                phone: "+212615613426",
+                whatsapp: "+212615613426",
+                coordinates: "الرباط",
+                city: "الرباط"
+            },
+            {
+                name: "خالد",
+                specialty: "إصلاح أنابيب المياه",
+                address: "الرباط",
+                phone: "+212671399747",
+                whatsapp: "+212671399747",
+                coordinates: "إصلاح أنابيب المياه",
+                city: "الرباط"
+            },
+            {   
+                name: "نجيب",
+                specialty: "صباغ",
+                address: "حي الفتح - الرباط",
+                phone: "+212652812841",
+                whatsapp: "+212652812841",
+                coordinates: "حي الفتح - الرباط",
+                city: "الرباط"
+            },
+            {
+                name: "عصام",
+                specialty: "صيانة عامة",
+                address: "التقدم ،الرباط",
+                phone: "+212659366567",
+                whatsapp: "+212659366567",
+                coordinates: "التقدم ،الرباط",
+                city: "الرباط"
+            },
+            { 
+               name: "سمير",
+                specialty: "رجل أمن",
+                address: "الرباط",
+                phone: "+212604859497",
+                whatsapp: "+212604859497",
+                coordinates: "الرباط",
+                city: "الرباط"
+            },
+            {
+                name: "عمر",
+                specialty: "صباغ",
+                address: "أكدال، الرباط",
+                phone: "+212629560195",
+                whatsapp: "+212629560195",
+                coordinates: "أكدال، الرباط",
+                city: "الرباط"
+            },
+            { 
+               name: "محمد",
+                specialty: "صباغ",
+                address: "الرباط ",
+                phone: "+212670670787 ",
+                whatsapp: "+212670670787  ",
+                coordinates: "الرباط",
+                city: "الرباط"
+            },
+            {
+                name: "ايوب",
+                specialty: "نجار",
+                address: "الرباط",
+                phone: "+212706448902 ",
+                whatsapp: "+212706448902  ",
+                coordinates: " الرباط",
+                city: "الرباط"
+            },
+            { 
+               name: "خالد",
+                specialty: "صيانة حوض السباحة",
+                address: "الرباط",
+                phone: "+212671399747 ",
+                whatsapp: "+212671399747  ",
+                coordinates: "الرباط",
+                city: "الرباط"
+            },
+            {
+                name: "شعيب",
+                specialty: "إصلاح أنابيب المياه",
+                address: "حسان، الرباط",
+                phone: "+212668484589 ",
+                whatsapp: "+212668484589  ",
+                coordinates: "حسان، الرباط",
+                city: "الرباط"
+            },
+            { 
+               name: "محمد",
+                specialty: "عامل الكهرباء",
+                address: "الرباط",
+                phone: "+212667596016 ",
+                whatsapp: "+212667596016  ",
+                coordinates: "الرباط",
+                city: "الرباط"
+            },
+            {
+                name: "عبد الغاني",
+                specialty: "عامل الكهرباء",
+                address: "حي الرياض ، الرباط",
+                phone: "+212665258341",
+                whatsapp: "+212665258341",
+                coordinates: "حي الرياض ، الرباط",
+                city: "الرباط"
+            },
+            { 
+               name: "أسامة",
+                specialty: "عامل الكهرباء",
+                address: "حي الرياض ، الرباط",
+                phone: "+212661237262",
+                whatsapp: "+212661237262 ",
+                coordinates: "حي الرياض ، الرباط",
+                city: "الرباط"
+            },
+            {
+                name: "جواد",
+                specialty: "صيانة حوض السباحة",
+                address: "حي الرياض ، الرباط",
+                phone: "+212646254944 ",
+                whatsapp: "+212646254944  ",
+                coordinates: "حي الرياض ، الرباط",
+                city: "الرباط"
+            },
+            {  
+                name: "فتاح",
+                specialty: "تركيب الزليج",
+                address: "أكدال ، الرباط",
+                phone: "+212704250336",
+                whatsapp: "+212704250336",
+                coordinates: "أكدال ، الرباط",
+                city: "الرباط"
+            },
+            {
+                name: "اسماعيل",
+                specialty: "صباغ",
+                address: "حي النهضة - الرباط",
+                phone: "+212606060606 ",
+                whatsapp: "+212606060606  ",
+                coordinates: "حي النهضة - الرباط",
+                city: "الرباط"
+            },
+            {  
+
+                name: "حمزة",
+                specialty: "أعمال البناء",
+                address: " الفداء - الدار البيضاء",
+                phone: "+212629885576",
+                whatsapp: "+212629885576",
+                coordinates: " الفداء - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+
+                name: "المكي",
+                specialty: "عامل الكهرباء",
+                address: "الدار البيضاء",
+                phone: "+212670542518",
+                whatsapp: "+212670542518",
+                coordinates: "الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "علوي",
+                specialty: "إصلاح التلفزيون والالكترونيات",
+                address: "الولفة، الدار البيضاء",
+                phone: "+212664249754",
+                whatsapp: "+212664249754",
+                coordinates: "الولفة، الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "محمد بـ",
+                specialty: "تركيب المطبخ",
+                address: "الدار البيضاء",
+                phone: "+212667059590",
+                whatsapp: "+212667059590",
+                coordinates: "الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "نبيل",
+                specialty: "عامل الكهرباء",
+                address: "حي المحمدي - الدار البيضاء",
+                phone: "+212664826598",
+                whatsapp: "+212664826598",
+                coordinates: "حي المحمدي - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "عبد الحكيم",
+                specialty: "عامل الكهرباء",
+                address: "الصخور السوداء - الدار البيضاء",
+                phone: "+212604094893",
+                whatsapp: "+212604094893",
+                coordinates: "الصخور السوداء - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "رشيد",
+                specialty: "عامل الكهرباء",
+                address: " وسط المدينة - الدار البيضاء",
+                phone: "+212664091982 ",
+                whatsapp: "+212664091982 ",
+                coordinates: " وسط المدينة - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "سعيد",
+                specialty: "إصلاح الأجهزة المنزلية",
+                address: "المعاريف - الدار البيضاء",
+                phone: "+212703271810 ",
+                whatsapp: "+212703271810  ",
+                coordinates: "المعاريف - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "يوسف",
+                specialty: "إصلاح الأجهزة المنزلية",
+                address: "المعاريف - الدار البيضاء",
+                phone: "+212619028870 ",
+                whatsapp: "+212619028870  ",
+                coordinates: "المعاريف - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "أيوب",
+                specialty: "كهربائي",
+                address: "2 مارس - الدار البيضاء",
+                phone: "+212674519530 ",
+                whatsapp: "+212674519530  ",
+                coordinates: "2 مارس - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "أيوب",
+                specialty: "كهربائي",
+                address: " سيدي مومن - الدار البيضاء",
+                phone: "+212666271215 ",
+                whatsapp: "+212666271215  ",
+                coordinates: " سيدي مومن - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "أمين",
+                specialty: "كهربائي",
+                address: "عين دياب - الدار البيضاء",
+                phone: "+212660439922",
+                whatsapp: "+212660439922",
+                coordinates: "عين دياب - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "هشام",
+                specialty: "حداد",
+                address: "الدار البيضاء",
+                phone: "+212070683147 ",
+                whatsapp: "+212070683147  ",
+                coordinates: "الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "هشام",
+                specialty: "أعمال البناء",
+                address: "عين الشق - الدار البيضاء",
+                phone: "+212660473903",
+                whatsapp: "+212660473903",
+                coordinates: "عين الشق - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+
+                name: "عبد السميع",
+                specialty: "أعمال الألمنيوم",
+                address: "الولفة ، الدار البيضاء",
+                phone: "+2120634495946",
+                whatsapp: "+2120634495946",
+                coordinates: "الولفة ، الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "سفيان",
+                specialty: "صباغ",
+                address: "الدار البيضاء",
+                phone: "+212638616634",
+                whatsapp: "+212638616634",
+                coordinates: "الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+                name: "شرف الدين",
+                specialty: "إصلاح التلفزيون والالكترونيات",
+                address: "عين السبع - الدار البيضاء",
+                phone: "+212762158080",
+                whatsapp: "+212762158080",
+                coordinates: "عين السبع - الدار البيضاء",
+                city: "الدار البيضاء"
+            },
+            {
+
+                name: "حميد",
+                specialty: "صباغ",
+                address: "حي الهدى، أكادير",
+                phone: "+212603203060",
+                whatsapp: "+212603203060",
+                coordinates: "حي الهدى، أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "عبد الله بـ",
+                specialty: "كهربائي",
+                address: "حي السلام ، أكادير",
+                phone: "+212719119908",
+                whatsapp: "+212719119908",
+                coordinates: "حي السلام ، أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "عمر",
+                specialty: "المنطقة السياحية - أكادير",
+                address: "صباغ",
+                phone: "+212659278109",
+                whatsapp: "+212659278109",
+                coordinates: "المنطقة السياحية - أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "مصطفى سـ",
+                specialty: " ",
+                address: "حي الفرح، أكادير",
+                phone: "+212618014181",
+                whatsapp: "+212618014181",
+                coordinates: "حي الفرح، أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "علي",
+                specialty: "البناء",
+                address: "حي السلام، أكادير",
+                phone: "+212707251334",
+                whatsapp: "+212707251334",
+                coordinates: "حي السلام، أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "زكرياء",
+                specialty: "كهربائي",
+                address: "أكادير",
+                phone: "+212624950202",
+                whatsapp: "+212624950202",
+                coordinates: " ",
+                city: "أكادير"
+            },
+            {
+                name: "أحمد",
+                specialty: "تركيب الزليج",
+                address: "أكادير",
+                phone: "+212672501812",
+                whatsapp: "+212672501812 ",
+                coordinates: "أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "يوسف",
+                specialty: "اصلاح انابيب المياه",
+                address: "حي الداخلة ، أكادير",
+                phone: "+212610552729",
+                whatsapp: "+212610552729",
+                coordinates: "حي الداخلة ، أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "رشيد",
+                specialty: "صباغ",
+                address: "حي الوفاء، أكادير",
+                phone: "+212664495679",
+                whatsapp: "+212664495679",
+                coordinates: "حي الوفاء، أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "محمد",
+                specialty: "إصلاح التلفزيون والالكترونيات",
+                address: "الحي الصناعي - أكادير",
+                phone: "+212666688046",
+                whatsapp: "+212666688046",
+                coordinates: "الحي الصناعي - أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "عمر",
+                specialty: "كهربائي",
+                address: "حي الهدى ، أكادير",
+                phone: "+212691827930",
+                whatsapp: "+212691827930",
+                coordinates: "حي الهدى ، أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "عبد العزيز",
+                specialty: "أعمال الالمنيوم",
+                address: "فونتي - أكادير",
+                phone: "+212639926144",
+                whatsapp: "+212639926144",
+                coordinates: "فونتي - أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "عبد المجيد",
+                specialty: "مهندس معماري",
+                address: "أكادير",
+                phone: "+212671550409",
+                whatsapp: "+212671550409",
+                coordinates: "أكادير",
+                city: "أكادير"
+            },
+            {
+                name: " مجيد",
+                specialty: "نجار",
+                address: "امتداد الداخلة - أكادير",
+                phone: "+212657053738",
+                whatsapp: "+212657053738",
+                coordinates: "امتداد الداخلة - أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "رشيد",
+                specialty: "الألواح الشمسية",
+                address: "أكادير",
+                phone: "+212612619329",
+                whatsapp: "+21أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "مبارك",
+                specialty: "أعمال البناء",
+                address: "أكادير",
+                phone: "+212666376298",
+                whatsapp: "+212666376298",
+                coordinates: "أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "خالد",
+                specialty: "صانع ومصلح الأ قفال",
+                address: "حي الهدى ،أكادير",
+                phone: "+212671504742 ",
+                whatsapp: "+212671504742",
+                coordinates: " ",
+                city: "أكادير"
+            },
+            {
+                name: "عبد الله مـ",
+                specialty: "تركيب المطبخ",
+                address: "وسط المدينة - أكادير",
+                phone: "+212681295702",
+                whatsapp: "+212681295702",
+                coordinates: "وسط المدينة - أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "صفوان",
+                specialty: "إصلاح الأجهزة المنزلية",
+                address: " حي داخلة - أكادير",
+                phone: "+212603506009",
+                whatsapp: "+212603506009",
+                coordinates: " حي داخلة - أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "محمد مـ",
+                specialty: "عامل كهربائي",
+                address: "أكادير",
+                phone: "+212668899165",
+                whatsapp: "+212668899165",
+                coordinates: "أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "خالد بـ",
+                specialty: "إصلاح مكيف الهواء",
+                address: "حي السلام، أكادير",
+                phone: "+212635561966",
+                whatsapp: "+212035561966",
+                coordinates: "حي السلام، أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "عبد العالي بـ",
+                specialty: "صباغ",
+                address: "أغروض ، أكادير",
+                phone: "+212613678216",
+                whatsapp: "+212613678216",
+                coordinates: "أغروض ، أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "رشيد بـ",
+                specialty: "عامل الكهرباء",
+                address: "أكادير",
+                phone: "+212605623221",
+                whatsapp: "+212605623221",
+                coordinates: "أكادير",
+                city: "أكادير"
+            },
+            {
+
+                name: "ياسين",
+                specialty: "إصلاح أنابيب المياه",
+                address: "أكادير",
+                phone: "+212658809789",
+                whatsapp: "+212658809789",
+                coordinates: "أكادير",
+                city: "أكادير"
+            },
+            {
+
+                name: "خالد",
+                specialty: "إصلاح أنابيب المياه",
+                address: "الحي المحمدي أكادير",
+                phone: "+212638459170",
+                whatsapp: "+212638459170",
+                coordinates: "الحي المحمدي أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "يوسف",
+                specialty: "عامل كهربائي",
+                address: "الحي المحمدي أكادير",
+                phone: "+212641856573",
+                whatsapp: "+212641856573",
+                coordinates: "الحي المحمدي أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "عبد الرحيم",
+                specialty: "عامل كهربائي",
+                address: "الحي المحمدي، أكادير",
+                phone: "+212610576387",
+                whatsapp: "+212610576387",
+                coordinates: "الحي المحمدي أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "عماد",
+                specialty: "عامل كهربائي",
+                address: "حي السلام،أكادير",
+                phone: "+212666880893",
+                whatsapp: "+212666880893",
+                coordinates: "حي السلام،أكادير",
+                city: "أكادير"
+            },
+            {
+                name: "علي",
+                specialty: "عامل كهربائي",
+                address: "الحي المحمدي، أكادير",
+                phone: "+212663677671",
+                whatsapp: "+212663677671",
+                coordinates: "الحي المحمدي، أكادير",
+                city: "أكادير"
+            },
+            {
+
+
+                name: "جمال",
+                specialty: "كهربائي منازل وصيانة",
+                address: "المسيرة ، مراكش",
+                phone: "+212 663 456 789",
+                whatsapp: "+212 663 456 789",
+                coordinates: "المسيرة ،مراكش، المغرب",
+                city: "مراكش"
+            },
+            {
+
+
+                name: "محمد ح ",
+                specialty: "عامل كهربائي ",
+                address: "أكادير",
+                phone: "+212 667910705",
+                whatsapp: "+212 667910705",
+                coordinates: "أكادير",
+                city: "أكادير"
+
+            }
+        ];
+
+        let currentCity = "الكل";
+        let moreCitiesVisible = false;
+
+        // دالة للرجوع للصفحة السابقة
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.close();
+            }
+        }
+
+        // دالة لفتح نموذج التسجيل
+        function openRegistrationForm() {
+            // سيتم استبدال هذا الرابط برابط نموذج Google Forms الفعلي
+            const registrationUrl = "https://forms.google.com/your-registration-form-id";
+            // فتح في نفس النافذة للحفاظ على أبعاد التطبيق
+            window.open(registrationUrl, '_blank', 'width=480,height=800,scrollbars=yes,resizable=yes');
+        }
+
+        // دالة لإظهار/إخفاء المدن الإضافية
+        function toggleMoreCities() {
+            const hiddenCities = document.querySelectorAll('.city-btn.hidden');
+            const moreBtn = document.querySelector('.more-cities-btn');
+            
+            moreCitiesVisible = !moreCitiesVisible;
+            
+            if (moreCitiesVisible) {
+                hiddenCities.forEach(btn => btn.classList.remove('hidden'));
+                moreBtn.textContent = '−';
+                moreBtn.style.transform = 'rotate(0deg)';
+            } else {
+                hiddenCities.forEach(btn => btn.classList.add('hidden'));
+                moreBtn.textContent = '...';
+                moreBtn.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // دالة لتطبيع النص للبحث
+        function normalizeText(text) {
+            return text
+                .replace(/[أإآا]/g, 'ا')
+                .replace(/[ؤو]/g, 'و')
+                .replace(/[ئي]/g, 'ي')
+                .replace(/[ة]/g, 'ه')
+                .replace(/[ً ٌ ٍ َ ُ ِ ّ ْ]/g, '')
+                .toLowerCase();
+        }
+
+        // دالة لترتيب المهنيين أبجدياً
+        function sortProfessionalsAlphabetically(professionals) {
+            return [...professionals].sort((a, b) => {
+                return a.name.localeCompare(b.name, 'ar', { sensitivity: 'base' });
+            });
+        }
+
+        function createProfessionalCard(professional) {
+            const whatsappNumber = professional.whatsapp.replace(/\s+/g, '').replace(/^\+/, '');
+            
+            return `
+                <div class="professional-card">
+                    <div class="professional-info">
+                        <div class="professional-name">${professional.name}</div>
+                        <div class="professional-specialty">${professional.specialty}</div>
+                        <div class="professional-address">📍 ${professional.address}</div>
+                        <div class="action-buttons">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=${professional.coordinates}" 
+                               target="_blank" class="btn btn-directions">
+                                <span class="icon">🗺️</span>
+                                اتجاهات
+                            </a>
+                            <a href="tel:${professional.phone}" class="btn btn-phone">
+                                <span class="icon">📞</span>
+                                اتصال
+                            </a>
+                            <a href="https://wa.me/${whatsappNumber}" target="_blank" class="btn btn-whatsapp">
+                                <span class="icon">💬</span>
+                                واتساب
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayProfessionals(professionalsToShow) {
+            const professionalsList = document.getElementById('professionalsList');
+            const noResults = document.getElementById('noResults');
+            
+            if (professionalsToShow.length === 0) {
+                professionalsList.innerHTML = '';
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+                professionalsList.innerHTML = professionalsToShow.map(professional => createProfessionalCard(professional)).join('');
+            }
+        }
+
+        function filterProfessionals() {
+            const searchTerm = document.getElementById('searchInput').value;
+            const normalizedSearchTerm = normalizeText(searchTerm);
+            
+            let filtered = professionals.filter(professional => {
+                const cityMatch = currentCity === "الكل" || professional.city === currentCity;
+                
+                if (!searchTerm) return cityMatch;
+                
+                const normalizedName = normalizeText(professional.name);
+                const normalizedSpecialty = normalizeText(professional.specialty);
+                const normalizedAddress = normalizeText(professional.address);
+                
+                const searchMatch = normalizedName.includes(normalizedSearchTerm) ||
+                                   normalizedSpecialty.includes(normalizedSearchTerm) ||
+                                   normalizedAddress.includes(normalizedSearchTerm);
+                
+                return cityMatch && searchMatch;
+            });
+            
+            displayProfessionals(sortProfessionalsAlphabetically(filtered));
+        }
+
+        function performSearch() {
+            filterProfessionals();
+        }
+
+        // Initialize the page
+        const sortedProfessionals = sortProfessionalsAlphabetically(professionals);
+        displayProfessionals(sortedProfessionals);
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', filterProfessionals);
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // City filter functionality
+        document.querySelectorAll('.city-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.city-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentCity = this.dataset.city;
+                filterProfessionals();
+            });
+        });
+
+        // Add animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.professional-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
